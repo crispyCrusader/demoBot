@@ -44,7 +44,7 @@ Other attributes will be added in the private.json as they are needed.
 
 VERSION HISTORY:
 
-Initial commit:
+Initial commit 05/16/2021:
 - Formatted the private.json file with the initial information:
   - Token
   - Admin role
