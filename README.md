@@ -39,13 +39,13 @@ As of right now, the "private.json" file needs to be in this format:
 The token is given to you when you do the following:
 - Make a developer account with Discord.
 - Create an application in the developer portal, and retrieve the token. 
-- 
+
 The admin role is created if it does not exist in the server, and this will allow you to select moderators you trust in the server.
 
 The command prefix is what starts the command. For my server, this prefix is "!d". Example command is "!d presence <custom presence>".
   
 The presence is a custom description that appears below the bot's profile in the member list. It appears in the form of "Playing / Watching / Streaming / Listening
-  <custom desc.>"
+  'custom desc.' "
   
 The voice channel is the primary voice channel that the bot will connect to. For simplicity's sake, right now this will be the only vc the bot can join, but functionality will 
   be added to let the bot join any vc.
