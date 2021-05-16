@@ -69,7 +69,7 @@ Once initialization is finished, the program checks to make sure the token was s
 After verifying that the token is initialized again, bot is built and started. Variable "jda" uses the JDA datatype, which represents the API wrapper used for this project. It sets the token and all the gateway intents (allows developers to choose which events the bot can receive and react to) are enabled. The program then pauses until the bot is fully initialized.
 
 Presence is then set, and then all the necessary static variables are set and created as well:
-- Guild: the "server" in which the bot resides in
+- Guild: the "server" in which the bot resides in.
 - Admin role: the role with the admin privileges. Automatically created if it does not exist already.
 - Text channel: the text channel which the bot will primarily send messages to. Automatically created if it does not exist already.
 - Voice channel: the voice channel which the bot will primarily connect to. Automatically created if it does not exist already.
