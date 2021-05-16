@@ -66,9 +66,7 @@ The init() function transfers all the information from the "private.json" into a
 Once initialization is finished, the program checks to make sure the token was stored correctly, since without the token the bot cannot run. Once verified, Bot.start() is 
   ran.
  
-After verifying the token is initialized again, bot is built and started. Variable "jda" uses the JDA datatype, which represents the API wrapper used for this project. It sets
-  the token and all the gateway intents (allows developers to choose which events the bot can receive and react to) are enabled. The program then pauses until the bot is fully
-  initialized.
+After verifying that the token is initialized again, bot is built and started. Variable "jda" uses the JDA datatype, which represents the API wrapper used for this project. It sets the token and all the gateway intents (allows developers to choose which events the bot can receive and react to) are enabled. The program then pauses until the bot is fully initialized.
 
 Presence is then set, and then all the necessary static variables are set and created as well:
 - Guild: the "server" in which the bot resides in
