@@ -28,12 +28,12 @@ to increase customization for multiple people to use.
 As of right now, the "private.json" file needs to be in this format:
 
 * {
-*   "TOKEN" : // Discord Application API Token
-*   "ADMIN_ROLE" : // Name of the role you want to have admin privileges
-*   "COMMAND_PREFIX" : // Custom command prefix
-*   "PRESENCE" : // Presence description
-*   "VOICE CHANNEL" : // Voice channel name
-*   "BOT_CHANNEL" : // Text channel name
+*   "TOKEN" : //Discord Application API Token//
+*   "ADMIN_ROLE" : //Name of the role you want to have admin privileges//
+*   "COMMAND_PREFIX" : //Custom command prefix//
+*   "PRESENCE" : //Presence description//
+*   "VOICE CHANNEL" : //Voice channel name//
+*   "BOT_CHANNEL" : //Text channel name//
 * }
 
 The token is given to you when you do the following:
@@ -42,7 +42,7 @@ The token is given to you when you do the following:
 
 The admin role is created if it does not exist in the server, and this will allow you to select moderators you trust in the server.
 
-The command prefix is what starts the command. For my server, this prefix is "!d". Example command is "!d presence <custom presence>".
+The command prefix is what starts the command. For my server, this prefix is "!d". Example command is "!d presence //custom presence//".
   
 The presence is a custom description that appears below the bot's profile in the member list. It appears in the form of "Playing / Watching / Streaming / Listening
   'custom desc.' "
