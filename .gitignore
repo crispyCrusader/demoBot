@@ -6,3 +6,7 @@ build
 
 # Ignore private JSON file
 private.json
+
+# Other files
+*.classpath
+*.project
