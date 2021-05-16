@@ -87,6 +87,8 @@ Initial commit 05/16/2021:
   - Presence
   - Voice channel
   - Bot channel
+- Bot can fully initialize with all the Gateway intents in place
+- Bot creates the required roles and channels upon initialization (if they do not exist already)
 
 Future features:
 - Add events (triggers that the bot reacts to)
