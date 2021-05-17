@@ -99,7 +99,7 @@ Major commit 2, 05/17/2021:
   - join: joins the voice channel that is stored in the "private.json" file.
   - leave: leaves the voice channel that the bot was previously connected to
 - Events: no event objects have been added. However, the event method "onGuildMessageReceived()" was added to Bot.java to enable command detection
-
+- Handler: responsible for parsing the command and delegating said command's execution. Also prints the dev message for a command
 
 FUTURE FEATURES:
 - Add events (triggers that the bot reacts to)
