@@ -1,32 +1,43 @@
 package demoBot;
 
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumSet;
 
 import javax.security.auth.login.LoginException;
 
+import commands.util.CommandObject;
+import commands.util.Handler;
+import events.util.EventObject;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.managers.AudioManager;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
+// Describes all the bot's attributes, as well as its actions it can take
 public class Bot extends ListenerAdapter{
 	
 	public static JDA jda;
 	public static Guild guild;
 	public static Role adminRole;
 	public static TextChannel botControlChannel;
+	public static VoiceChannel botVoiceChannel;
 	public static boolean isJoined;
 	
+	// Inital launch of the bot. Ensures the token is initialized
 	public static boolean launch() throws LoginException, InterruptedException {
 		// Ensures the config file is initialized
 		if (!Config.isInitialized())
@@ -38,6 +49,7 @@ public class Bot extends ListenerAdapter{
 		return start();
 	}
 	
+	// Starts the bot after the token is initialized. Responsible for intializing all essential processes
 	public static boolean start() throws InterruptedException, LoginException {
 		
 		// Ensures that the bot's token has been initialized in the config file
@@ -48,6 +60,7 @@ public class Bot extends ListenerAdapter{
 		jda = JDABuilder
 				.createDefault(Config.get("TOKEN").toString(), EnumSet.allOf(GatewayIntent.class))
 				.build();
+		// Waits for the bot to be fully initialized before moving on to the other processes
 		jda.awaitReady();
 		
 		// Sets the default presence of the bot
@@ -59,6 +72,7 @@ public class Bot extends ListenerAdapter{
 		// Creates admin's role if it doesn't exist
 		if (guild.getRolesByName(Config.get("ADMIN_ROLE"), true).isEmpty())
 		{
+			// Creates the admin role
 			guild.createRole()
 				.setName(Config.get("ADMIN_ROLE"))
 				.setColor(Color.yellow)
@@ -66,6 +80,7 @@ public class Bot extends ListenerAdapter{
 				.setPermissions(getAdminPermissions())
 				.complete();
 			
+			// Moves the admin role as high in the role hierarchy as the bot is permitted to
 			guild.modifyRolePositions()
 				.selectPosition(guild.getRolesByName(Config.get("ADMIN_ROLE"), true).get(0))
 				.moveTo(guild.getBotRole().getPosition() - 1)
@@ -75,7 +90,7 @@ public class Bot extends ListenerAdapter{
 		// Sets the admin's role to the static variable
 		adminRole = guild.getRolesByName(Config.get("ADMIN_ROLE"), true).get(0);
 		
-		// Creates channels if they don't exist
+		// Creates text and voice channels if they don't exist
 		if (guild.getTextChannelsByName(Config.get("BOT_CONTROL_CHANNEL"), true).isEmpty())
 			guild.createTextChannel(Config.get("BOT_CONTROL_CHANNEL"))
 			.setTopic("Don't worry 'bout it yet.")
@@ -84,14 +99,44 @@ public class Bot extends ListenerAdapter{
 			guild.createVoiceChannel(Config.get("VOICE_CHANNEL"))
 			.complete();
 
-		// Initializes the control channel variable
+		// Initializes the text control and voice channel variables
 		botControlChannel = guild.getTextChannelsByName(Config.get("BOT_CONTROL_CHANNEL"), true).get(0);
+		botVoiceChannel = guild.getVoiceChannelsByName(Config.get("VOICE_CHANNEL"), true).get(0);
 		
 		// Initializes the commands
-		//TODO
+		CommandObject.init();
+		
 		// Initializes the events
-		//TODO
+		EventObject.init();
+		
+		/* 
+		 * Adds the Bot class as an event listener. This allows it to detect events in the Guild, 
+		 *  which allows the onGuildMessageReceived method to be used without error
+		 */
+		jda.addEventListener(new Bot());
+		
 		return true;
+	}
+	
+	// Detects if a message was received through a guild channel
+	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+		String message  = event.getMessage().getContentRaw();
+		TextChannel textChannel = event.getChannel();
+		Member member = event.getMember();
+		User user = member.getUser();
+		
+		// Splits up the words into separate strings in an array
+		String [] arg = message.split(" ");
+		
+		if (!user.isBot())
+		{
+			// Checks if the first string is the command prefix, and if the message came from the bot control channel
+			if (arg[0].compareTo(Config.get("COMMAND_PREFIX")) == 0 && textChannel.compareTo(botControlChannel) == 0)
+			{
+				@SuppressWarnings("unused")
+				Handler commandHandler = new Handler(textChannel,  member, user, arg);
+			}
+		}
 	}
 	
 	// Shuts down the program
@@ -100,16 +145,23 @@ public class Bot extends ListenerAdapter{
 	}
 	
 	// Joins the voice channel
-	public static void joinVC() {
+	public static void joinVC(TextChannel textChannel) {
+		// Determines if the bot is already connected to a voice channel
 		if (isJoined)
+		{
+			// Sends a message to user letting them know it's already connected, and then stays connected to vc
+			textChannel.sendMessage("Already connected to voice channel " + Config.get("VOICE_CHANNEL")).queue();
 			return;
+		}
 		
 		String channelId = Config.get("VOICE_CHANNEL").toString();
 		VoiceChannel channel = guild.getVoiceChannelsByName(channelId, true).get(0);
 		AudioManager manager = guild.getAudioManager();
 		
+		// Attempts to open a connection to the voice channel
 		try 
 		{
+			textChannel.sendMessage("Joining the voice channel \"" + Config.get("VOICE_CHANNEL") + "\"").queue();
 			manager.openAudioConnection(channel);
 			isJoined = true;
 		} catch(Exception e) {
@@ -118,7 +170,16 @@ public class Bot extends ListenerAdapter{
 	}
 	
 	// Leaves the voice channel
-	public static void leaveVC() {
+	public static void leaveVC(TextChannel textChannel) {
+		// Determines if the bot is already not connected to a voice channel
+		if (!isJoined)
+		{
+			// Sends a message to user letting them know it's not connected
+			textChannel.sendMessage("I'm not even connected to a voice channel ").queue();
+			return;
+		}
+		
+		textChannel.sendMessage("Leaving the voice channel \"" + Config.get("VOICE_CHANNEL") + "\"").queue();
 		guild.getAudioManager().closeAudioConnection();
 		isJoined = false;
 	}
@@ -126,6 +187,14 @@ public class Bot extends ListenerAdapter{
 	// Sets a custom presence activity
 	public static void setActivity(String activity) {
 		jda.getPresence().setActivity(Activity.playing(activity));
+	}
+	
+	public static LocalDate getCurrentDate() {
+		return LocalDate.now();
+	}
+	
+	public static LocalTime getCurrentTime() {
+		return LocalTime.now();
 	}
 	
 	// Adds every role needed for the admin role
