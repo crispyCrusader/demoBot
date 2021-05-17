@@ -94,8 +94,8 @@ Major commit 2, 05/17/2021:
     - getName(): stores the name of the event. Used for the dev message
     - getAction(): stores the action that a specific event will do
 - Dev messages: upon execution of either a command or an event, a dev message will appear in the terminal, providing feedback on whether execution was successful or not, and the timestamp of when execution took place
-- Commands: added commands in the form of "<command_name> <arguments>":
-  - help <command>: retrieves information on a specific command. Leave the command field blank for information on every command
+- Commands: added commands in the form of "'command_name' 'arguments'":
+  - help 'command': retrieves information on a specific command. Leave the command field blank for information on every command
   - join: joins the voice channel that is stored in the "private.json" file.
   - leave: leaves the voice channel that the bot was previously connected to
 - Events: no event objects have been added. However, the event method "onGuildMessageReceived()" was added to Bot.java to enable command detection
