@@ -8,6 +8,9 @@ public class Main {
 	public static void main(String [] args) throws LoginException, InterruptedException {
 		
 		// Launches the bot
-		Bot.launch();
+		boolean status = Bot.launch();
+		
+		if (status == true)
+			Bot.botControlChannel.sendMessage("I have successfully launched. Hello!").queue();
 	}
 }
