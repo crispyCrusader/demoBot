@@ -140,7 +140,9 @@ public class Bot extends ListenerAdapter{
 	}
 	
 	// Shuts down the program
-	public static void shutdown() {
+	public static void shutdown(TextChannel textChannel) {
+		textChannel.sendMessage("Shutting down now").complete();
+		
 		System.exit(0);
 	}
 	
