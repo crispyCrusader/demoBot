@@ -103,13 +103,27 @@ After these steps are done, the bot is fully initialized. Event and command init
 - Events: no event objects have been added. However, the event method "onGuildMessageReceived()" was added to Bot.java to enable command detection
 - Handler: responsible for parsing the command and delegating said command's execution. Also prints the dev message for a command
 
+#### Major commit 3, 05/23/2021
+- Commands added:
+  - Lines of code and file counter
+  - Set custom activity / presence
+  - Shutdown bot (Admin only)
+- Events added:
+  - Message response to certain keywords
+  - Message blocker
+    - Deletes message that matches a RegEx pattern
+    - Used to block racist or crude messages
+    - Returns keyword match and user who sent the message via a dev message
+  - Fake typing
+    - 4% chance per message sent that the bot will send the "Typing" status through a text channel
+    - Just something I used to test the various types of events
+  - Automatically join voice channel
+    - If a human user joins the bot's voice channel, the bot will automatically join as well
+  - Automatically leave voice channel
+    - If there are no human users left in the bot's voice channel, the bot will automatically disconnect
+
 ### FUTURE FEATURES:
-- [Add events (triggers that the bot reacts to)]
-	- [Say hello back]
-	- [Automatically join / leave voice channel when someone else joins] 
-	- [Block crude / racist messages]
-- [Add commands]
-	- [Music player (play, stop, skip, back, etc.)]
-	- [Set custom presence activity (does not replace the presence in "private.json")]
-	- [File counter, and total lines of code counter]
-	- [Shutdown]
+- Add a music player
+  - Commands: play, stop, skip, back, queue, etc.
+  - Will mainly work with YouTube
+  - Might incorporate Spotify API to yield better results
