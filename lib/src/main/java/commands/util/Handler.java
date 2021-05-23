@@ -46,7 +46,7 @@ public class Handler {
 		
 		// If command was not found, a message is sent to the user telling them to use the help command
 		if (!commandFound) {
-			textChannel.sendMessage("I don't know that command. Type in " + Config.get("COMMAND_PREFIX") + " help for infomation on commands").queue();
+			textChannel.sendMessage("I don't know that command. Type in " + Config.get("COMMAND_PREFIX") + " help for infomation on commands.").queue();
 		}
 	}
 }
