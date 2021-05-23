@@ -24,11 +24,11 @@ As of right now, the "private.json" file needs to be in this format:
 
 ```
 {
-"TOKEN" : <Discord Application API Token>
-"ADMIN_ROLE" : <Name of the role you want to have admin privileges>
-"COMMAND_PREFIX" : <Custom command prefix>
-"PRESENCE" : <Presence description>
-"VOICE CHANNEL" : <Voice channel name>
+"TOKEN" : <Discord Application API Token>,
+"ADMIN_ROLE" : <Name of the role you want to have admin privileges>,
+"COMMAND_PREFIX" : <Custom command prefix>,
+"PRESENCE" : <Presence description>,
+"VOICE CHANNEL" : <Voice channel name>,
 "BOT_CHANNEL" : <Text channel name>
 }
 ```
