@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import commands.Help;
 import commands.Join;
 import commands.Leave;
+import commands.Lines;
+import commands.ShutDown;
+import commands.Activity;
 import demoBot.Bot;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -50,6 +53,11 @@ public abstract class CommandObject {
 		commands.add(new Help());
 		commands.add(new Join());
 		commands.add(new Leave());
+		commands.add(new Activity());
+		
+		// Dev commands
+		commands.add(new Lines());
+		commands.add(new ShutDown());
 		
 		getTypes();
 	}
