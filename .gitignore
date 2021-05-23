@@ -10,3 +10,6 @@ private.json
 # Other files
 *.classpath
 *.project
+
+# README.md.backup
+README.md.backup

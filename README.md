@@ -1,6 +1,6 @@
-*** STILL IN DEVELOPMENT ***
+#** STILL IN DEVELOPMENT **
 
-PROJECT TITLE: "Demo Bot"
+##PROJECT TITLE: "Demo Bot"
 
 I have been developing several Discord bots over the past 6 months or so, and learned so much about software development in the process. This demobot is a way for me to continually show the skills I have learned and continue to learn.
   
@@ -16,20 +16,22 @@ Both of the above projects take advantage of the Apache License 2.0.
 
 Source Java files are located in the demoBot/src/test/java directory.
 
-IMPORTANT INFORMATION:
+###IMPORTANT INFORMATION:
 
 In order to run this project, a "private.json" file is needed with the required information. This file is not included in the commits for maximum privacy, as well as to increase customization for multiple people to use.
 
 As of right now, the "private.json" file needs to be in this format:
 
-* {
-*   "TOKEN" : //Discord Application API Token//
-*   "ADMIN_ROLE" : //Name of the role you want to have admin privileges//
-*   "COMMAND_PREFIX" : //Custom command prefix//
-*   "PRESENCE" : //Presence description//
-*   "VOICE CHANNEL" : //Voice channel name//
-*   "BOT_CHANNEL" : //Text channel name//
-* }
+```
+{
+"TOKEN" : <Discord Application API Token>
+"ADMIN_ROLE" : <Name of the role you want to have admin privileges>
+"COMMAND_PREFIX" : <Custom command prefix>
+"PRESENCE" : <Presence description>
+"VOICE CHANNEL" : <Voice channel name>
+"BOT_CHANNEL" : <Text channel name>
+}
+```
 
 The token is given to you when you do the following:
 - Make a developer account with Discord.
@@ -47,7 +49,7 @@ The bot channel is the primary text channel the bot will send messages in. Just 
   
 Other attributes will be added in the "private.json" as they are needed.
     
-HOW IT WORKS / PROGRAM FLOW:
+###HOW IT WORKS / PROGRAM FLOW:
 
 The program starts in the Main.java file, where the main method is. It calls the static object of Bot, transferring control to Bot.launch() method.
 
@@ -67,9 +69,9 @@ Presence is then set, and then all the necessary static variables are set and cr
 
 After these steps are done, the bot is fully initialized. Event and command initialization takes place after the text and voice channel initializations.
 
-VERSION HISTORY:
+###VERSION HISTORY:
 
-Initial commit, 05/16/2021:
+####Initial commit, 05/16/2021:
 - Formatted the "private.json" file with the initial information:
   - Token
   - Admin role
@@ -80,7 +82,7 @@ Initial commit, 05/16/2021:
 - Bot can fully initialize with all the Gateway intents in place
 - Bot creates the required roles and channels upon initialization (if they do not exist already)
 
-Major commit 2, 05/17/2021:
+####Major commit 2, 05/17/2021:
 - Created both event and command initializations:
   - Command abstract information:
     - getName(): stores the name of the command. Used for the command handler to execute the command, as well as the dev message
@@ -101,13 +103,13 @@ Major commit 2, 05/17/2021:
 - Events: no event objects have been added. However, the event method "onGuildMessageReceived()" was added to Bot.java to enable command detection
 - Handler: responsible for parsing the command and delegating said command's execution. Also prints the dev message for a command
 
-FUTURE FEATURES:
-- Add events (triggers that the bot reacts to)
-  - Say hello back
-  - Automatically join / leave voice channel when someone else joins
-  - Block crude / racist messages
-- Add commands
-  - Music player (play, stop, skip, back, etc.)
-  - Set custom presence activity (does not replace the presence in "private.json")
-  - File counter, and total lines of code counter
-  - Shutdown
+###FUTURE FEATURES:
+- [Add events (triggers that the bot reacts to)]
+	- [Say hello back]
+	- [Automatically join / leave voice channel when someone else joins] 
+	- [Block crude / racist messages]
+- [Add commands]
+	- [Music player (play, stop, skip, back, etc.)]
+	- [Set custom presence activity (does not replace the presence in "private.json")]
+	- [File counter, and total lines of code counter]
+	- [Shutdown]
