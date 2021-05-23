@@ -49,7 +49,7 @@ The bot channel is the primary text channel the bot will send messages in. Just 
   
 Other attributes will be added in the "private.json" as they are needed.
     
-###HOW IT WORKS / PROGRAM FLOW:
+### HOW IT WORKS / PROGRAM FLOW:
 
 The program starts in the Main.java file, where the main method is. It calls the static object of Bot, transferring control to Bot.launch() method.
 
@@ -69,9 +69,9 @@ Presence is then set, and then all the necessary static variables are set and cr
 
 After these steps are done, the bot is fully initialized. Event and command initialization takes place after the text and voice channel initializations.
 
-###VERSION HISTORY:
+### VERSION HISTORY:
 
-####Initial commit, 05/16/2021:
+#### Initial commit, 05/16/2021:
 - Formatted the "private.json" file with the initial information:
   - Token
   - Admin role
@@ -82,7 +82,7 @@ After these steps are done, the bot is fully initialized. Event and command init
 - Bot can fully initialize with all the Gateway intents in place
 - Bot creates the required roles and channels upon initialization (if they do not exist already)
 
-####Major commit 2, 05/17/2021:
+#### Major commit 2, 05/17/2021:
 - Created both event and command initializations:
   - Command abstract information:
     - getName(): stores the name of the command. Used for the command handler to execute the command, as well as the dev message
@@ -103,7 +103,7 @@ After these steps are done, the bot is fully initialized. Event and command init
 - Events: no event objects have been added. However, the event method "onGuildMessageReceived()" was added to Bot.java to enable command detection
 - Handler: responsible for parsing the command and delegating said command's execution. Also prints the dev message for a command
 
-###FUTURE FEATURES:
+### FUTURE FEATURES:
 - [Add events (triggers that the bot reacts to)]
 	- [Say hello back]
 	- [Automatically join / leave voice channel when someone else joins] 
