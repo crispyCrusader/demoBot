@@ -1,6 +1,6 @@
-#** STILL IN DEVELOPMENT **
+# **_STILL IN DEVELOPMENT_**
 
-##PROJECT TITLE: "Demo Bot"
+## PROJECT TITLE: "Demo Bot"
 
 I have been developing several Discord bots over the past 6 months or so, and learned so much about software development in the process. This demobot is a way for me to continually show the skills I have learned and continue to learn.
   
@@ -16,7 +16,7 @@ Both of the above projects take advantage of the Apache License 2.0.
 
 Source Java files are located in the demoBot/src/test/java directory.
 
-###IMPORTANT INFORMATION:
+### IMPORTANT INFORMATION:
 
 In order to run this project, a "private.json" file is needed with the required information. This file is not included in the commits for maximum privacy, as well as to increase customization for multiple people to use.
 
