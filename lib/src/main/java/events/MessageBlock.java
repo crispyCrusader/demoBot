@@ -31,7 +31,7 @@ public class MessageBlock extends EventObject{
 		this.user = event.getMember().getUser().getName();
 		
 		// Starter regex pattern to block the n-word (will be improved upon later)
-		String regExPattern = "(?i)(n[^\\s]{4,}r|n[^\\s]{3,}a)";
+		String regExPattern = "(?i)(n[^\\s]{4,}(r|(u([\\s]*)h))|n[^\\s]{3,}a)|n([\\s]*)i([\\s]*)g([\\s]*)g([\\s]*)(a|(u([\\s]*)h)|(e([\\s]*)r))";
 		
 		// RegEx pattern for blocked messages
 		Pattern r = Pattern.compile(regExPattern);
