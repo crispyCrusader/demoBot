@@ -40,7 +40,7 @@ dependencies {
 	implementation 'com.sedmelluq:lavaplayer:1.3.75'
 	
 	// JDA
-	compile 'net.dv8tion:JDA:4.2.0_250'
+	compile 'net.dv8tion:JDA:4.2.1_265'
 	
 	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
 	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
