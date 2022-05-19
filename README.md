@@ -1,5 +1,3 @@
-# **_STILL IN DEVELOPMENT_**
-
 ## PROJECT TITLE: "Demo Bot"
 
 I have been developing several Discord bots over the past 6 months or so, and learned so much about software development in the process. This demobot is a way for me to continually show the skills I have learned and continue to learn.
